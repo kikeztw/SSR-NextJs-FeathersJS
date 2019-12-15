@@ -1,10 +1,10 @@
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dir: './client', dev });
-const handle = nextApp.getRequestHandler();
+const app = next({ dir: './client', dev });
+const handle = app.getRequestHandler();
 
 module.exports = {
-  nextApp,
+  app,
   handle
 };

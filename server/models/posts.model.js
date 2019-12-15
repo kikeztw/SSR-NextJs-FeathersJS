@@ -1,14 +1,14 @@
-// post-model.js - A mongoose model
+// posts-model.js - A mongoose model
 // 
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
-  const post = new Schema({
-    title: { type: String  },
-    content: { type: String },
-    url: { type: String }
+  const posts = new Schema({
+    title: { type: String, required: true },
+    picture: { type: String, required: true },
+    description: { type: String, required: true },
   }, {
     timestamps: true
   });
@@ -16,8 +16,8 @@ module.exports = function (app) {
   // This is necessary to avoid model compilation errors in watch mode
   // see https://github.com/Automattic/mongoose/issues/1251
   try {
-    return mongooseClient.model('post');
+    return mongooseClient.model('posts');
   } catch (e) {
-    return mongooseClient.model('post', post);
+    return mongooseClient.model('posts', posts);
   }
 };

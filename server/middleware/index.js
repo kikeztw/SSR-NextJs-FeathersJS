@@ -1,12 +1,14 @@
 // eslint-disable-next-line no-unused-vars
-const next = require('./next');
+const postView = require('../views/post');
+const handleView = require('../views/handle');
+
 
 module.exports = function (app) {
-  // Add your custom middleware here. Remember that
-  // in Express, the order matters.
 
+  // custom root for render next pages
+  app.get('/p', postView(app));
 
-  app.get('/p', next.post(app.services));
-  app.get('*', next());
+  // next sould handle the rest of route
+  app.get('*', handleView);
   
-};
+}
